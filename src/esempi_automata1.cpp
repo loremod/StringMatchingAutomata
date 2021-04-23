@@ -1,7 +1,7 @@
 #include "automata.h"
 
 int main(){
-	/*	--Sono presenti due funzioni di transioni differenti, l'automa modificher‡ il proprio delta sulla base del valore del flag:
+	/*	--Sono presenti due funzioni di transioni differenti, l'automa modificher√† il proprio delta sulla base del valore del flag:
 				-True) la funzione di transizione rappresenta un automa che accetta le stringhe con un numero pari di 'a'
 				-False) la funzione di transizione rappresenta un automa che accetta le stringhe con un numero pari di 'b'
 		COMANDI:
@@ -15,7 +15,7 @@ int main(){
 	
 	int **delta = new int*[Q];
 	for(int i=0;i<Q;i++){
-		delta[i] = new int[dim_sigma + 1]; //+1 perchË si tengono in considerazione tutti i caratteri mancanti
+		delta[i] = new int[dim_sigma + 1]; //+1 perch√® si tengono in considerazione tutti i caratteri mancanti
 		delta[i][0] = 0;
 	}
 	delta[0][1] = 1 ;
