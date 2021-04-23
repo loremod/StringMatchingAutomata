@@ -14,7 +14,7 @@ class automata{
 		int Q;				//numero di stati(vanno da 0 a Q-1)
 		int **delta;		//matrice della funzione di transizione
 		int s0;				//stato iniziale
-		int *F;      		//stati finali in cui la stringa in input è "accettata", con F sottoinsieme dell'insieme degli stati
+		int *F;      		//stati finali in cui la stringa in input Ã¨ "accettata", con F sottoinsieme dell'insieme degli stati
 		
 		//DIMENSIONI E TABELLA HASH
 		int dim_sigma; 						//dimensione di sigma
@@ -25,7 +25,7 @@ class automata{
 		void initialize_hash_table(){		//all'i-esimo carattere viene associato i
 			indexOf[MISSING] = 0;
 			for(int i=0;i<dim_sigma;i++)
-				indexOf[sigma[i]] = i + 1;  //0 è riservato ai caratteri mancanti(MISSING)
+				indexOf[sigma[i]] = i + 1;  //0 Ã¨ riservato ai caratteri mancanti(MISSING)
 		}
 		
 	protected:
