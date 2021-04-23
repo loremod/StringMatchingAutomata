@@ -10,11 +10,11 @@ class SMA: public automata{
 		//METODI PRIVATI
 		int countDistinct(string p){	//ritorna il numero di caratteri distinti in p, utilizzato per ottenere la dimensione dell'array sigma
 			int len = 0;
-			unordered_map<char,bool> seen; //tiene in considerazione i caratteri gi‡ visti
+			unordered_map<char,bool> seen; //tiene in considerazione i caratteri gi√† visti
 			//setta tutto a false
 			for(int i = 0 ; i < p.length(); i++)
 				seen[p.at(i)] = false;
-			//controlla se un carattere non Ë stato contato(e in tal caso aumenta len di 1)
+			//controlla se un carattere non √® stato contato(e in tal caso aumenta len di 1)
 			for(int i = 0 ; i < p.length(); i++){
 				if(!seen[p.at(i)]){
 					seen[p.at(i)] = true;
@@ -29,11 +29,11 @@ class SMA: public automata{
 			_sigma->array = new char[len];
 			_sigma->length = len;
 			int x=0;//indice
-			unordered_map<char,bool> seen; //tiene in considerazione i caratteri gi‡ visti
+			unordered_map<char,bool> seen; //tiene in considerazione i caratteri gi√† visti
 			//setta tutto a false
 			for(int i = 0 ; i < p.length(); i++)
 				seen[p.at(i)] = false;
-			//controlla se un carattere non Ë stato contato(e in tal caso aumenta x di 1)
+			//controlla se un carattere non √® stato contato(e in tal caso aumenta x di 1)
 			for(int i = 0 ; i < p.length(); i++){
 				if(!seen[p.at(i)]){
 					seen[p.at(i)] = true;
@@ -49,12 +49,12 @@ class SMA: public automata{
 			int n_sigma = getSigmaDim();
 			int** delta = new int*[_Q];
 			
-			//OBIETTIVO: trovare la pi˘ grande sottostringa di p(sub_p) che risulta essere suffisso di str
+			//OBIETTIVO: trovare la pi√π grande sottostringa di p(sub_p) che risulta essere suffisso di str
 			for(int i = 0; i < _Q; i++){ 
 				int pos = i < p.size()-1 ? i : p.size()-1;//Per evitare i casi impossibili e non far avvenire l'errore IndexOutOfRange
 				string sub_p = p.substr(0, 1 + pos);
-				delta[i] = new int[n_sigma + 1]; 		//(n_sigma + 1) perchË delta[i][0] Ë riservato ai caratteri non presenti nel pattern
-				delta[i][0] = 0;						//Se il carattere in questione non Ë presente in p allora sicuramente lo stato dovr‡ essere 0
+				delta[i] = new int[n_sigma + 1]; 		//(n_sigma + 1) perch√® delta[i][0] √® riservato ai caratteri non presenti nel pattern
+				delta[i][0] = 0;						//Se il carattere in questione non √® presente in p allora sicuramente lo stato dovr√† essere 0
 				for(int j = 0; j < n_sigma; j++){
 					string str = p.substr(0,i);
 					str += _sigma[j];
