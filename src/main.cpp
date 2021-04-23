@@ -1,4 +1,5 @@
 #include "string_matching_automata.h"
+
 void TryMatch(SMA& sma, string s){
 	cout << "\n\n\nRICERCA DEL PATTERN: \""<< sma.getPattern() <<"\" NEL TESTO: \""<< s <<"\"\n OCCORRENZE:\n	";
 	sma.match(s);
