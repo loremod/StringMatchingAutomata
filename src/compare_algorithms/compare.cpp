@@ -8,8 +8,6 @@
 
 using namespace std::chrono;
 
-//template<class T> void ask(string question, T& response);
-//template<class T> void showVector(vector<T>* v);
 vector<int>* automata_string_matching(string T, string p);
 void fetch_function_results(vector<int>** where_to_store, vector<int>* (**functions_to_execute)(string,string), string T, string p);
 bool checkCorrectness(vector<int>**);
@@ -38,10 +36,12 @@ int main(){
 	//Naive
 	cout << endl << funcs[0] <<":\n";
 	showVector(f_results[0]);
+	cout << "Execution time: " << f_times[0] << endl;
 	
 	//Automata
 	cout << endl << funcs[1] <<":\n";
 	showVector(f_results[1]);
+	cout << "Execution time: " << f_times[1] << endl;
 	
 	//Correctness
 	if(checkCorrectness(f_results))cout << "\nGli algoritmi hanno prodotto lo stesso risultato";
@@ -61,7 +61,7 @@ void fetch_function_results(vector<int>** where_to_store, vector<int>* (**functi
 		where_to_store[i] = functions_to_execute[i](T, p);
 		auto stop = high_resolution_clock::now();
 		auto duration = duration_cast<microseconds>(stop - start);
-		cout << duration.count() << endl;
+		f_times[i] = duration.count();
 	}
 }
 bool checkCorrectness(vector<int>** sequences){
@@ -88,21 +88,20 @@ void samplesOrInput(string& txt){
 		return;	
 	}
 	
+	while(true){
+		ask("\nVuoi utilizzare dei campioni abbastanza grandi da poter fare considerazioni sul tempo di esecuzione degli algoritmi?(S/N): ",r);
+		if(r=='S' or r=='s' or r=='n' or r=='N')
+			break;
+	}
+	
+	string path = "../util/samples";
+	if(r=='S' or r== 's')
+		path = "../util/longer_samples";
+		
 	int i;
-	samplesManager sm("../util/samples",".txt");
+	samplesManager sm(path.c_str(),".txt");
 	sm.printStarryInfo();
 	ask("\nScegli l'id del file da selezionare: ",i);
 	txt = sm.selectSampleText(i - 1);
 }
-//template<class T>
-//void ask(string question, T& response){
-//	cout << question;
-//	getline(cin, response);
-//}
-//template<class T> 
-//void showVector(vector<T>* v){
-//	for(const auto &e : *v)
-//		cout << e << "	";
-//	cout << endl;
-//}
 

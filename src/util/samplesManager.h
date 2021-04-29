@@ -24,7 +24,7 @@ void printStar(int i=1){
 }
 
 /*	Ho fatto questa classe per poter gestire l'utilizzo dei campioni di testo
-	presenti nella cartella 'samples'(ma samplesManager funziona per una directory generica, non si
+	presenti nella cartella 'samples'(ma samplesManager funziona con una directory generica, non si
 	limita al nome di questa directory specifica).
 	In questo modo, quando dovrò comparare gli algoritmi di string matching(specialmente per quanto riguarda 
 	i tempi di esecuzione) potrò importare a run-time il testo che più preferisco, potendomi anche basare sulla dimensione
