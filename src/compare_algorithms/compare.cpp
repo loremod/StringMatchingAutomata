@@ -2,6 +2,7 @@
 #include "../string_matching_automata.h"
 #include "../naive_algorithm/naive_string_matching.h"
 #include "../util/useful_code.h"
+#include "../util/samplesManager.h"
 
 #define NUM_FUNC	2 //numero di funzioni da confrontare
 
@@ -12,6 +13,7 @@ using namespace std::chrono;
 vector<int>* automata_string_matching(string T, string p);
 void fetch_function_results(vector<int>** where_to_store, vector<int>* (**functions_to_execute)(string,string), string T, string p);
 bool checkCorrectness(vector<int>**);
+void samplesOrInput(string& txt);
 
 vector<int>* (*string_matching[NUM_FUNC])(string, string) {naive_string_matching, automata_string_matching};
 string funcs[NUM_FUNC] = {"Naive algorithm","Finite Automata algorithm"};
@@ -27,8 +29,8 @@ int main(){
 	
 	//Richiedere Testo e pattern
 	string T,p;
- 	ask("Inserisci testo: ", T);
-	ask("Inserisci pattern: ",p);
+ 	samplesOrInput(T);
+	ask("\nInserisci pattern: ",p);
 	
 	//Eseguire gli algoritmi e ottenere output e tempi di esecuzione
 	fetch_function_results(f_results,string_matching,T,p);
@@ -72,7 +74,26 @@ bool checkCorrectness(vector<int>** sequences){
 			if(sequences[0]->at(j) != sequences[i]->at(j))	return false;
 	return true;
 }
-
+void samplesOrInput(string& txt){
+	char r;
+	
+	while(true){
+		ask("\nVuoi utilizzare dei campioni di testo prelevati da file?(S/N): ",r);
+		if(r=='S' or r=='s' or r=='n' or r=='N')
+			break;
+	}
+	
+	if(r=='n' or r=='N'){
+		ask("\nInserisci testo: ", txt);
+		return;	
+	}
+	
+	int i;
+	samplesManager sm("../util/samples",".txt");
+	sm.printStarryInfo();
+	ask("\nScegli l'id del file da selezionare: ",i);
+	txt = sm.selectSampleText(i - 1);
+}
 //template<class T>
 //void ask(string question, T& response){
 //	cout << question;

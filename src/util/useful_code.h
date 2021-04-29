@@ -1,9 +1,14 @@
 //Delle funzioni per raggruppare codice utile
 
+void ask(string question, string& response){
+	cout << question;
+	getline(cin >> ws, response);
+}
+
 template<class T>
 void ask(string question, T& response){
 	cout << question;
-	getline(cin, response);
+	cin >> response;
 }
 
 template<class T> 
