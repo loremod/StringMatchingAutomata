@@ -43,27 +43,28 @@ class samplesManager{
 		string* fileNames;
 		string  dirName;
 		
-		
-	public:
-		samplesManager(const char _dirName[], string extensionType=""){
-			this->dirName = _dirName;
-			this->extension = extensionType;
-			n = 0;
+		int getNumberOfFiles(){
+			int x = 0;
 			struct dirent *de; 
 			
-			DIR *dr = opendir(_dirName);
+			DIR *dr = opendir(dirName.c_str());
 			
-			if (dr == NULL)  // ritorna null se non può aprire la directory
-    		{
-        		cout << "Could not open current directory";
-    		}
+    		while ((de = readdir(dr)) != NULL)
+				if(de->d_name[0] != '.' and finishWith(de->d_name, de->d_namlen, ".txt"))
+					x++;
+    		closedir(dr);
+    		return x;
+		}
+		
+		string* getFileNames(){
+			struct dirent *de; 
+			
+			DIR *dr = opendir(dirName.c_str());
+			
     		while ((de = readdir(dr)) != NULL)
     		if(de->d_name[0] != '.' and finishWith(de->d_name, de->d_namlen, ".txt"))//TO DO: de->d_name[0] != '.' in effetti potrebbe anche essere omesso(con le nuove modifiche non dovrebbe servire piu')
             {
-            	n++;
 				string s = "";
-            	if(dirName.at(dirName.length()-1)!='/')
-            		s="/";
 				s = dirName + s + de->d_name;
 				int totalDim = s.length() + 1;//dirNameLength + de->d_namlen;
             	char fileName[totalDim];
@@ -74,7 +75,51 @@ class samplesManager{
 			}
             	
     		closedir(dr);
+		}
+		string getCorrectDirName(char _dirName[]){
+			string s = _dirName;			
+			if(s.at(s.length()-1)!='/')
+            		s+="/";
+            return s;
+		}
+	public:
+		samplesManager(const char _dirName[], string extensionType=""){
+			this->dirName = getCorrectDirName(_dirName);
+			this->extension = extensionType;
+			n = getNumberOfFiles();
+			cout << n;
+			fileNames = getFileNames();
+//			struct dirent *de; 
+//			
+//			DIR *dr = opendir(_dirName);
+//			
+//			if (dr == NULL)  // ritorna null se non può aprire la directory
+//    		{
+//        		cout << "Could not open current directory";
+//    		}
+//    		while ((de = readdir(dr)) != NULL)
+//    		if(de->d_name[0] != '.' and finishWith(de->d_name, de->d_namlen, ".txt"))//TO DO: de->d_name[0] != '.' in effetti potrebbe anche essere omesso(con le nuove modifiche non dovrebbe servire piu')
+//            {
+//				string s = "";
+//            	if(dirName.at(dirName.length()-1)!='/')
+//            		s="/";
+//				s = dirName + s + de->d_name;
+//				int totalDim = s.length() + 1;//dirNameLength + de->d_namlen;
+//            	char fileName[totalDim];
+//            	strcpy(fileName, s.c_str());
+//            	//concatInto(fileName, dirName, de->d_name, dirNameLength, de->d_namlen);
+//            	cout << fileName;
+//				cout << de->d_name << " " << de->d_namlen << "	" << findSize(fileName) << endl;
+//			}
+//            	
+//    		closedir(dr);
     		
+		}
+		static bool directoryExists(char _dir[]){
+			DIR *dr = opendir(_dir);
+			if (dr == NULL)  // ritorna false se non può aprire la directory
+				return false;
+			return true;
 		}
 		
 };
