@@ -18,6 +18,18 @@ string funcs[NUM_FUNC] = {"Naive algorithm","Finite Automata algorithm"};
 vector<int>* f_results[NUM_FUNC];
 double f_times[NUM_FUNC];
 
+
+
+//int millisecondi() {
+//    clock_t init, end;
+//    init = clock();
+//    // do something ....
+//    end = clock();
+//    double time = (end-init)*1000.0 / (double)CLOCKS_PER_SEC;
+//}
+
+
+
 int main(){
 	
 	//Titolo e descrzione
