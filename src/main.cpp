@@ -9,7 +9,7 @@ int main(){
 	SMA a("nanna");
 	cout << "Delta di a:\n";
 	a.printDelta();
-	TryMatch(a, "ninna nanna nonno nanni nannnannana");
+	TryMatch(a, "ninna nanna nonfp nannik nannnannana");
 	cout << endl << endl << endl;
 	cout << "Delta di b:\n";
 	SMA b("ababaca");
