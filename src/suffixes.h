@@ -7,7 +7,7 @@ bool isSuffix(string a, string b){
 			return false;
 	return true;
 }
-//Trova la dimensione della più grande sottostringa di sf che è suffissa di p
+//Trova la dimensione della più grande sottostringa di sf che è suffisso di p
 int bestSubSuffix(string sf, string p){
 	for(int i = sf.length(); i > 0; i--)
 		if(isSuffix(sf.substr(0,i), p))

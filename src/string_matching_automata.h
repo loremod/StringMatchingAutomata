@@ -47,13 +47,13 @@ class SMA: public automata{
 		int** computeDelta(string p){ 	//ritorna la matrice della funzione di transizione 
 			int _Q = getQ();
 			char* _sigma = getSigma();
-			int n_sigma = getSigmaDim();
+			int n_sigma = getSigmaDim(); //n_sigma contiene il valore di sigma
 			int** delta = new int*[_Q];
 			
-			//OBIETTIVO: trovare la piu' grande sottostringa di p(sub_p) che risulta essere suffisso di str
+			//OBIETTIVO: trovare la piu' grande sottostringa di p (sub_p) che risulta essere suffisso di str
 			for(int i = 0; i < _Q; i++){ 
-				int pos = i < p.size()-1 ? i : p.size()-1;//Per evitare i casi impossibili e non far avvenire l'errore IndexOutOfRange
-				string sub_p = p.substr(0, 1 + pos);
+				int k = i < p.size()-1 ? i : p.size()-1;//Per evitare i casi impossibili e non far avvenire l'errore IndexOutOfRange
+				string sub_p = p.substr(0, 1 + k);
 				delta[i] = new int[n_sigma + 1]; 		//(n_sigma + 1) perche' delta[i][0] e' riservato ai caratteri non presenti nel pattern
 				delta[i][0] = 0;						//Se il carattere in questione non e' presente in p allora sicuramente lo stato dovra'  essere 0
 				for(int j = 0; j < n_sigma; j++){
@@ -113,7 +113,7 @@ class SMA: public automata{
 		string getPattern(){
 			return p;
 		}
-
+		//ritorna un vettore contenente tutte gli spostamenti validi del pattern p nel testo s
 		vector<int>* getMatches(string s){
 			vector<int>* v = _match(s);
 			return v;

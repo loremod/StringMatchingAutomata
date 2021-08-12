@@ -17,13 +17,13 @@ vector<int>* (*string_matching[NUM_FUNC])(string, string) {naive_string_matching
 string funcs[NUM_FUNC] = {"Naive algorithm","Finite Automata algorithm"};
 vector<int>* f_results[NUM_FUNC];
 double f_times[NUM_FUNC];
+bool isFileLong;
 
 
-
-//int millisecondi() {
+//    alternativa:
 //    clock_t init, end;
 //    init = clock();
-//    // do something ....
+//    // codice
 //    end = clock();
 //    double time = (end-init)*1000.0 / (double)CLOCKS_PER_SEC;
 //}
@@ -48,18 +48,24 @@ int main(){
 	//Naive
 	cout << endl << funcs[0] <<":\n";
 	showVector(f_results[0]);
-	cout << "Execution time: " << f_times[0] << endl;
+	if(isFileLong)cout << "Execution time: " << f_times[0] << endl;
 	
 	//Automata
 	cout << endl << funcs[1] <<":\n";
 	showVector(f_results[1]);
-	cout << "Execution time: " << f_times[1] << endl;
+	if(isFileLong)cout << "Execution time: " << f_times[1] << endl;
 	
 	//Correctness
 	if(checkCorrectness(f_results))cout << "\nGli algoritmi hanno prodotto lo stesso risultato";
 	else	cout << "\nI valori non coincidono";
 	
-	//Comparing functions time execution 
+	//Comparing functions time execution
+	if(!isFileLong)return 0;
+	cout << "\n L'algoritmo " << funcs[0] << " e' stato eseguito"; 
+	if(f_times[0]<f_times[1])  cout << " in minor tempo rispetto all'";
+	else if(f_times[0]==f_times[1]) cout << " nello stesso tempo dell'";
+	else cout << " in maggior tempo rispetto all'";
+	cout << "algoritmo " << funcs[1];
 }
 
 vector<int>* automata_string_matching(string T, string p){
@@ -88,6 +94,7 @@ bool checkCorrectness(vector<int>** sequences){
 }
 void samplesOrInput(string& txt){
 	char r;
+	isFileLong = false;
 	
 	while(true){
 		ask("\nVuoi utilizzare dei campioni di testo prelevati da file?(S/N): ",r);
@@ -107,8 +114,10 @@ void samplesOrInput(string& txt){
 	}
 	
 	string path = "../util/samples";
-	if(r=='S' or r== 's')
+	if(r=='S' or r== 's'){
 		path = "../util/longer_samples";
+		isFileLong = true;
+	}
 		
 	int i;
 	samplesManager sm(path.c_str(),".txt");

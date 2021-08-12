@@ -7,13 +7,13 @@ void TryMatch(SMA& sma, string s){
 int main(){
 	//SMA a("ciaociaoooia");
 	SMA a("nanna");
-	cout << "Delta di a:\n";
+	cout << "Funzione di transizione di a:\n";
 	a.printDelta();
-	TryMatch(a, "ninna nanna nonfp nannik nannnannana");
+	TryMatch(a, "ninna nanna nonfj nannik nannnannana");
 	cout << endl << endl << endl;
-	cout << "Delta di b:\n";
+	cout << "Funzione di transizione di b:\n";
 	SMA b("ababaca");
 	b.printDelta();
 	TryMatch(b,"abababacaba");
-	TryMatch(b,"qabakasdababacwasvababacawd ss");
+	TryMatch(b,"qabakasdababacwasvababacawd sababacas");
 }
