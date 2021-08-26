@@ -60,12 +60,15 @@ int main(){
 	else	cout << "\nI valori non coincidono";
 	
 	//Comparing functions time execution
-	if(!isFileLong)return 0;
-	cout << "\n L'algoritmo " << funcs[0] << " e' stato eseguito"; 
-	if(f_times[0]<f_times[1])  cout << " in minor tempo rispetto all'";
-	else if(f_times[0]==f_times[1]) cout << " nello stesso tempo dell'";
-	else cout << " in maggior tempo rispetto all'";
-	cout << "algoritmo " << funcs[1];
+	if(isFileLong){
+		cout << "\n L'algoritmo " << funcs[0] << " e' stato eseguito"; 
+		if(f_times[0]<f_times[1])  cout << " in minor tempo rispetto all'";
+		else if(f_times[0]==f_times[1]) cout << " nello stesso tempo dell'";
+		else cout << " in maggior tempo rispetto all'";
+		cout << "algoritmo " << funcs[1];
+	}
+	cout << endl;
+	system("pause");
 }
 
 vector<int>* automata_string_matching(string T, string p){
