@@ -26,8 +26,8 @@ $(LDIR)/%.o: %.c $(LDEPS)
 	$(CC) -c -o $@ $< $(CFLAGS)
 
 
-$(ODIR)/%.o: %.c $(DEPS)
+$(IDIR)/%.o: %.c $(DEPS)
 	$(CC) -c -o $@ $< $(CFLAGS)
 
-compare: $(OBJ)
+compare: $(DEPS) $(OBJ) $(LDEPS) $(UDEPS)
 	$(CC) -o $@ $^ $(CFLAGS)

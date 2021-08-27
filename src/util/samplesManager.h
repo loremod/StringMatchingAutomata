@@ -26,10 +26,10 @@ void printStar(int i=1){
 /*	Ho fatto questa classe per poter gestire l'utilizzo dei campioni di testo
 	presenti nella cartella 'samples'(ma samplesManager funziona con una directory generica, non si
 	limita al nome di questa directory specifica).
-	In questo modo, quando dovrò comparare gli algoritmi di string matching(specialmente per quanto riguarda 
-	i tempi di esecuzione) potrò importare a run-time il testo che più preferisco, potendomi anche basare sulla dimensione
+	In questo modo, quando dovrï¿½ comparare gli algoritmi di string matching(specialmente per quanto riguarda 
+	i tempi di esecuzione) potrï¿½ importare a run-time il testo che piï¿½ preferisco, potendomi anche basare sulla dimensione
 	dei vari file(espressa con gli asterischi, richiamando il metodo printStarryInfo()).
-	Così facendo posso fare dei test utilizzando un testo molto grande e che contiene un alfabeto di caratteri alfanumerici vasto(interessante
+	Cosï¿½ facendo posso fare dei test utilizzando un testo molto grande e che contiene un alfabeto di caratteri alfanumerici vasto(interessante
 	specialmente dal punto di vista dell'automa a stati finiti per quanto concerne il computo della funzione di transizione).
 	Ad ogni nuova esecuzione, l'istanza della classe va a prelevare i nomi dei file di testo(potrebbe prendere anche altri tipi di file, ma 
 	non ne abbiamo bisogno) presenti nella cartella specificata. Quindi, in qualsiasi momento si possono inserire nuovi file di testo
@@ -51,9 +51,9 @@ class samplesManager{
 			DIR *dr = opendir(dirName.c_str());
 			
     		while ((de = readdir(dr)) != NULL)
-				if(de->d_name[0] != '.' and finishWith(de->d_name, de->d_namlen, extension))
+				if(de->d_name[0] != '.' and finishWith(de->d_name, strlen(de->d_name), extension))
 					x++;
-    		closedir(dr);
+    		closedir(dr); 
     		return x;
 		}
 			
@@ -64,7 +64,7 @@ class samplesManager{
 			int i=0;
 			
     		while ((de = readdir(dr)) != NULL)
-    			if(de->d_name[0] != '.' and finishWith(de->d_name, de->d_namlen, extension))//TO DO: de->d_name[0] != '.' in effetti potrebbe anche essere omesso(con le nuove modifiche non dovrebbe servire piu')
+    			if(de->d_name[0] != '.' and finishWith(de->d_name, strlen(de->d_name), extension))//TO DO: de->d_name[0] != '.' in effetti potrebbe anche essere omesso(con le nuove modifiche non dovrebbe servire piu')
             		names[i++] = de->d_name;
 			
     		closedir(dr);
@@ -131,7 +131,7 @@ class samplesManager{
 		}
 		static bool directoryExists(char _dir[]){
 			DIR *dr = opendir(_dir);
-			if (dr == NULL)  // ritorna false se non può aprire la directory
+			if (dr == NULL)  // ritorna false se non puï¿½ aprire la directory
 				return false;
 			return true;
 		}
