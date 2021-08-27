@@ -1,3 +1,6 @@
+#include <iostream>
+#include<vector>
+using namespace std;
 //Delle funzioni per raggruppare codice utile
 
 void ask(string question, string& response){
