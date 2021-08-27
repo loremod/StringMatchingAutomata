@@ -1,6 +1,7 @@
 #include <iostream>
 #include <dirent.h>
 #include <math.h>
+#include <cstring>
 #include<fstream>
 using namespace std;
 
@@ -62,7 +63,7 @@ class samplesManager{
 			DIR *dr = opendir(dirName.c_str());
 			string *names = new string[n];
 			int i=0;
-			
+
     		while ((de = readdir(dr)) != NULL)
     			if(de->d_name[0] != '.' and finishWith(de->d_name, strlen(de->d_name), extension))//TO DO: de->d_name[0] != '.' in effetti potrebbe anche essere omesso(con le nuove modifiche non dovrebbe servire piu')
             		names[i++] = de->d_name;
