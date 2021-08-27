@@ -29,5 +29,5 @@ $(LDIR)/%.o: %.c $(LDEPS)
 $(ODIR)/%.o: %.c $(DEPS)
 	$(CC) -c -o $@ $< $(CFLAGS)
 
-compareMake: $(OBJ)
+compare: $(OBJ)
 	$(CC) -o $@ $^ $(CFLAGS)
